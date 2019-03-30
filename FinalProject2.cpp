@@ -108,3 +108,92 @@ void inFaculty(int b,int a)
 	}
 }
 
+int main()
+{
+	printf("\t\tWelcome to process menagement\n");
+	int p,facc=0,stuc=0;
+	printf("Any process Before 10:00 AM if yes press 1 else press 0   ");
+	scanf("%d",&p);
+	while(p!=0)
+	{
+		system("cls");
+		printf("\n\n1.student and 2. Faculty\n Enter your respone:- ");
+		int q,b,a;
+		scanf("%d",&q);
+		if(q==1)
+		{
+			printf("Enter the bust time: ");
+			scanf("%d",&b);
+			printf("Enter Arival time: ");
+			scanf("%d",&a);
+			if(a>=1000)
+			{
+			printf("\nError enter the arival time again   ");
+			scanf("%d",&a);
+			}
+			inStudent(b,a);
+			stuc++;
+		}
+		else if(q==2)
+		{
+			printf("\nEnter the bust tim: ");
+			scanf("%d",&b);
+			printf("\nEnter Arival time: ");
+			scanf("%d",&a);
+			if(a>=1000)
+			{
+			printf("\nError enter the arival time again   ");
+			scanf("%d",&a);
+			}
+			inFaculty(b,a);
+			facc++;
+		}
+		else
+		printf("choose wisely\n");
+		printf("\nPRESS 1 TO CONTINUE else PRESS 0\t");
+		scanf("%d",&p);
+	}
+	
+	if(p==0)
+	{
+		facc++;
+		stuc++;
+	}
+	int i=0,j=0;
+	int bs[stuc],as[stuc],rs[stuc],wts[stuc];
+	int bf[facc],af[facc],rf[facc],wtf[facc];
+	if(p==0)
+	{
+		facc--;
+		stuc--;
+	}
+	
+	if(stuc)
+	{
+	while(start!=NULL)
+	{
+		bs[i]=start->bust;
+		wts[i]=start->ariv;
+	//	wts[i]=ti(wts[i]);
+		rs[i]=bs[i];
+		start=start->next;
+		i++;
+	}
+	}
+	
+	if(facc)
+	{
+	while(start1!=NULL)
+	{
+		bf[j]=start1->bust;
+		wtf[j]=start1->ariv;
+		//wtf[j]=ti(wtf[i]);
+		rf[j]=bf[j];
+		start1=start1->next;
+		j++;
+	}}
+	int per;
+	if(stuc==0 && facc==0)
+	per=0;
+	else
+	per=int(120/(stuc+facc));
