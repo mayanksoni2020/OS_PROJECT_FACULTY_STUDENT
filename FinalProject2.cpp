@@ -197,3 +197,76 @@ int main()
 	per=0;
 	else
 	per=int(120/(stuc+facc));
+
+	printf("\t\nHello Sudesh Today You have %d process to process    \n",stuc+facc);
+	printf("\t\nWith %d are from student and %d from faculty         \n",stuc,facc);
+	printf("\t Your new process time for rest Process are  %d\n",per);
+	//sum=0;
+	
+	if(facc>0 && tim<120)
+	{
+	for(i=0;i<facc/2;i++)
+	{
+		swap(bf[i],bf[facc-i-1]);
+		swap(rf[i],rf[facc-i-1]);
+		swap(wtf[i],wtf[facc-i-1]);
+	}
+	for(i=0;i<facc;i++)
+	{
+		wtf[i]=ti(wtf[i]);
+	}
+	int x;
+	i=0;
+	m:
+	x=tim;
+	for(int i=0;i<facc;i++)
+	{
+		x+=bf[i];
+	}
+	if(x>120)
+	{
+		facc--;
+		printf("F[%d] time exceed\n",facc+1);
+		goto m;
+	}
+	
+	int bff[facc],rff[facc],wtff[facc];
+	for(int j=0;j<facc;j++)
+	{
+		bff[j]=bf[j];
+		rff[j]=rf[j];
+		wtff[j]=wtf[j];
+	}
+	
+	int k=facc,e;
+	tot(k);
+	for(tim=0,e=0;facc!=0;)
+	{
+		if(bff[e]<=per && bff[e]>0)
+		{
+			
+			tim+=bff[e];
+			bff[e]=0;
+			flag=1;
+		}
+		else if(bff[e]>0)
+		{
+			bff[e]-=per;
+			tim+=per;
+		}
+		if(bff[e]==0 && flag==1)
+		{
+			facc--;
+			printf("\n\nProcess\t|Turnaround Time|Waiting Time\n\n"); 
+			printf("F[%d]\t|\t%d\t|\t%d\n",e+1,tim+wtff[e],tim-rff[e]+wtff[e]);
+			waitf +=tim-rff[e]+wtff[e];
+			turnf +=tim+wtff[e];
+			flag=0;
+		}
+		if(e==k-1)
+		e=0;
+		else
+		e++;
+	}
+}
+	
