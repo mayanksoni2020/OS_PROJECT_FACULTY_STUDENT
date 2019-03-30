@@ -269,4 +269,132 @@ int main()
 		e++;
 	}
 }
+	int po;
+	//for new faculty process.
+	q:if(tim<120)
+	{
+	int cutt = cut(tim);
+	printf("\nCURRENT TIME is %d\t",cutt);
+	printf("\nAny Faculty waitng or Student waiting  press 1 for faculty or press 2 for student  \t");
+	printf("\n If No process Waiting the press 3 \t");
+	printf("\n To Quit press 4");
+	scanf("%d",&po);
+	if(po==1)
+	{
+		printf("\nHow many are waiting \t");
+		int op;
+		scanf("%d",&op);
+		int b[op],a[op];
+		for(int i=0;i<op;i++)
+		{
+			printf("\n Enter the ARRIVAL time and BUST time %d  ",i+1);
+			scanf("%d %d",&a[i],&b[i]);
+			t:if(a[i]>cutt || a[i]>1200)
+			{
+				printf("ERROR!!! Enter the Time again\n ");
+				printf("Enter the corect arrival time \n");
+				scanf("%d",&a[i]);
+				goto t;
+			}
+			a[i]=ti1(a[i]);
+		}
+		per=(int)(120-tim)/(stuc+op);
+		printf("\n Your new process time for rest Process are %d",per);
+		m3:
+	int x=tim;
+	for(int i=0;i<op;i++)
+	{
+		x+=b[i];
+	}
+	if(x>120)
+	{
+		op--;
+		printf("F[%d] time exceed\n",op+1);
+		goto m3;
+	}
+	int bff[op],rff[op],wtff[op];
+	for(int j=0;j<op;j++)
+	{
+		bff[j]=b[j];
+		rff[j]=b[j];
+		wtff[j]=a[j];
+	}
 	
+	int k=op,u;
+	tot(k);
+	for(u=0;op!=0;)
+	{
+		if(bff[u]<=per && bff[u]>0)
+		{
+			
+			tim+=bff[u];
+			bff[u]=0;
+			flag=1;
+		}
+		else if(bff[u]>0)
+		{
+			bff[u]-=per;
+			tim+=per;
+		}
+		if(bff[u]==0 && flag==1)
+		{
+			op--;
+			printf("\n\nProcess\t|Turnaround Time|Waiting Time\n\n"); 
+			printf("F[%d]\t|\t%d\t|\t%d\n",u+1,tim-wtff[u],tim-rff[u]-wtff[u]);
+			waitff +=tim-rff[u]-wtff[u];
+			turnff +=tim-wtff[u];
+			flag=0;
+		}
+		if(u==k-1)
+		u=0;
+		else
+		u++;
+	}
+	}
+	else if(po==3)
+	{
+		if(stuc==0)
+		{
+		tim+=5;
+		goto final;
+		}
+		else
+		goto w;
+	}
+	else if(po==4)
+	{
+	printf("\n Average Waiting Time is %f       ",(float)(waitf+waits+waitff+waitfs)/totalp);
+	printf("\n Average processing time is %f    ",(float)tim/totalp);
+	int kj;
+	cin>>kj;
+	exit(0);
+	}
+	else if(po==2)
+	{
+	int cutt = cut(tim);
+	printf("Current Time is %d\n",cutt);
+	printf("\nAny Studnt waitng  press 1 \t");
+	if(stuc==0)
+	{
+	int po;
+	scanf("%d",&po);
+	if(po==1)
+	{
+		printf("\nHow many are waiting \t");
+		int op;
+		scanf("%d",&op);
+		int b[op],a[op];
+		for(int i=0;i<op;i++)
+		{
+			printf("\n Enter the ARRIVAL time and BUST time %d  ",i+1);
+			scanf("%d %d",&a[i],&b[i]);
+			t1:if(a[i]>cutt || a[i]>=1200)
+			{
+				printf("ERROR enter the Time again\n ");
+				printf("enter the corect arrival time \n");
+				scanf("%d",&a[i]);
+				goto t1;
+			}
+			a[i]=ti1(a[i]);
+		}
+
