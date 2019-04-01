@@ -397,4 +397,24 @@ int main()
 			}
 			a[i]=ti1(a[i]);
 		}
-
+		per=(int)(120-tim)/(op);
+		printf("\n Your new process time for rest Process are %d",per);
+		m4:
+	int x=tim;
+	for(int i=0;i<op;i++)
+	{
+		x+=b[i];
+	}
+	if(x>120)
+	{
+		op--;
+		printf("S[%d] time exceed\n",op+1);
+		goto m4;
+	}
+	int bff[op],rff[op],wtff[op];
+	for(int j=0;j<op;j++)
+	{
+		bff[j]=b[j];
+		rff[j]=b[j];
+		wtff[j]=a[j];
+	}
