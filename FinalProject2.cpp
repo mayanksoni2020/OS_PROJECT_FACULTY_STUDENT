@@ -418,3 +418,131 @@ int main()
 		rff[j]=b[j];
 		wtff[j]=a[j];
 	}
+
+	int k=op,l;
+	tot(k);
+	for(l=0;op!=0;)
+	{
+		if(bff[l]<=per && bff[l]>0)
+		{
+			
+			tim+=bff[l];
+			bff[l]=0;
+			flag=1;
+		}
+		else if(bff[l]>0)
+		{
+			bff[l]-=per;
+			tim+=per;
+		}
+		if(bff[l]==0 && flag==1)
+		{
+			op--;
+			printf("\n\nProcess\t|Turnaround Time|Waiting Time\n\n"); 
+			printf("F[%d]\t|\t%d\t|\t%d\n",l+1,tim-wtff[l],tim-rff[l]-wtff[l]);
+			waitfs +=tim-rff[l]-wtff[l];
+			turnss +=tim-wtff[l];
+			flag=0;
+		}
+		if(l==k-1)
+		l=0;
+		else
+		l++;
+	}
+	}
+	}
+	else
+	{
+	printf("\n \t\tWAIT \n");
+	goto w;
+	}
+	}
+	else
+	{
+		goto w;
+	}
+	}
+	else
+	{
+		goto final;
+	}
+	
+	goto q;
+	w:if(stuc>0 && tim<120)
+	{
+		for(i=0;i<stuc/2;i++)
+	{
+		swap(bs[i],bs[stuc-i-1]);
+		swap(rs[i],rs[stuc-i-1]);
+		swap(wts[i],wts[stuc-i-1]);
+	}
+	for(i=0;i<stuc;i++)
+	{
+		wts[i]=ti(wts[i]);
+	}
+	int x;
+	i=0;
+	m1:
+	x=tim;
+	for(int i=0;i<stuc;i++)
+	{
+		x+=bs[i];
+	}
+	if(x>120)
+	{
+		stuc--;
+		printf("\nS[%d]time exceed\n",stuc+1);
+		goto m1;
+	}
+	int bff[stuc],rff[stuc],wtff[stuc];
+	for(int j=0;j<stuc;j++)
+	{
+		bff[j]=bs[j];
+		rff[j]=rs[j];
+		wtff[j]=wts[j];
+	}
+	
+	int k=stuc,v;
+	tot(k);
+	for(v=0;stuc!=0;)
+	{
+		if(bff[v]<=per && bff[v]>0)
+		{
+			
+			tim+=bff[v];
+			bff[v]=0;
+			flag=1;
+		}
+		else if(bff[v]>0)
+		{
+			bff[v]-=per;
+			tim+=per;
+		}
+		if(bff[v]==0 && flag==1)
+		{
+			stuc--;
+			printf("\n\nProcess\t|Turnaround Time|Waiting Time\n\n");
+			printf("S[%d]\t|\t%d\t|\t%d\n",v+1,tim+wtff[v],tim-rff[v]+wtff[v]);
+			waits +=tim-rff[v]+wtff[v];
+			turns +=tim+wtff[v];
+			flag=0;
+		}
+		if(v==k-1)
+		v=0;
+		else
+		v++;
+	}
+	}
+	goto q;
+	final:
+	if(tim>=120)
+	{
+	printf("\n Average Waiting Time is %f     ",(float)(waitf+waits+waitff+waitfs)/totalp);
+	printf("\n Average processing time is %f  ",(float)tim/totalp);
+	exit(0);
+	}
+	else
+	{
+		goto q;
+	}
+}
